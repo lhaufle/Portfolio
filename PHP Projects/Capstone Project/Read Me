@@ -1,1 +1,27 @@
+The Problem
 
+ Sysco foods is a multinational company and the largest wholesale food supplier. Many of their customers are restaurants that
+ purchase on charge terms. The challenge for companies like Sysco is fairly unique in that most of their products do not come
+ with great security—it is difficult to reclaim perishable or used goods. Restaurants are also not always stable businesses,
+ which further complicates the problem.Parsa, Rest, Smith, Parsa, and Bujisic (2014) some of the reasons for failure were, 
+ “lack of experience, insufficient capital, poor location, poor inventory management, over-investment in fixed assets, poor 
+ credit arrangement and poor credit management, personal use of business funds, unexpected growth, competition, and low sales” (p. 82).
+ 
+ Proposed Solution
+ 
+ As a solution to this problem, a proposed consulting application will be built. It is in the best interest for companies like Sysco, 
+ which have a large portion for their profits in receivables to see assist restaurant with their business. The application allows the 
+ customer to enter weekly financials that will be viewed by a consultant and a member of the credit team. Menu items will also be added 
+ that will allow the consultant to see who much it cost to make the product and how much they are charging for it.  This information 
+ will be regularly reviewed, and adjustment can be recommended when appropriate.
+ 
+ How it Works
+ 
+ This project is made up of four subsystems: customer, credit, consultant, and admin. The customer can add periodic profit and loss
+ information that will be saved to a MySQL database. The information can be viewed by both the credit and the consultant. The customer 
+ can also add menu items that will show the cost to make the item and the profit. The items are can be viewed by the assigned consultant.
+ The customer also has a message feature that allows the customer to send and recieve messaged to their assigned consultant. The admin
+ subsystem was created to mean CRUD requirements for the different user profiles. 
+
+
+ 
