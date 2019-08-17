@@ -9,7 +9,7 @@ class consultant {
   private $phoneNumber;
   
     function __construct($id){
-    $dbc = mysqli_connect('localhost', 'root', 'YourNewPassword', 'sysco');
+    $dbc = mysqli_connect();
     $this->ID = $id;
     $sql = "SELECT * from consultant where consultant_id = $id";
     $result = mysqli_query($dbc, $sql);
