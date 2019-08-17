@@ -1,0 +1,520 @@
+/* -------------- Styles for the projects page ------------------*/
+
+/*###############################################################*/
+
+body {
+  padding: 0px;
+  background-color: #eaece5;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 90%;
+  margin: auto;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+/*-----Navigation Bar-------*/
+
+#projBar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #b2c2bf;
+  margin-top: -8px;
+}
+
+#projBar h2 {
+  margin: 0;
+  margin-right: 5%;
+  font-size: 1.5em;
+}
+
+#projBar>button {
+  width: 75px;
+  padding: 0px;
+  height: 50px;
+  font-size: 30px;
+  background-color: #3b3a30;
+  color: white;
+}
+
+#projBar button p {
+  margin: 0px;
+}
+
+/*----style for drop down-----*/
+
+#dropDown {
+  background-color: #c0ded9;
+  color: #3b3a30;
+  margin-top: -16px;
+  padding-bottom: 16px;
+}
+
+#dropDown ul {
+  padding: 0px;
+}
+
+.invisDrop {
+  display: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  /* no underline */
+}
+
+.drop {
+  text-decoration: none;
+  list-style: none;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding-top: 5px;
+}
+
+.drop:hover {
+  background-color: #eaece5;
+}
+
+/*display for header*/
+
+#mainSection {
+  margin: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  display: -webkit-flex;
+  /* Safari */
+  -webkit-flex-wrap: wrap;
+  /* Safari 6.1+ */
+}
+
+#imgArticle {
+  flex: 1;
+}
+
+#classInfo {
+  flex: 3 1 auto;
+  background-color: white;
+  padding-left: 5%;
+}
+
+/*---------------------Project One CSS-------------------------- */
+
+/*###############################################################*/
+
+/*-----Nav Bar-----*/
+
+.proj-one-nav {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: flex-start;
+  background-color: #a2b9bc;
+  padding: 0% 0% 0% 5%;
+  font-size: 1rem;
+  align-items: center;
+}
+
+
+div.proj-one-nav p {
+  margin: 0% 0% 0% 5%;
+  width: 15%;
+  text-align: center;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+div.proj-one-nav p:hover {
+  border-bottom: 5px solid #6b5b95;
+}
+
+div.proj-one-nav p a {
+  background-color: #a2b9bc;
+  text-decoration: none;
+  color: black;
+}
+
+/*-----header-----*/
+
+.proj-one-header {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 200px;
+  background-image: linear-gradient(90deg, #b2ad7f, #a2b9bc);
+}
+
+/*-------main body---------*/
+
+.proj-one-main {
+  font-family: 'Montserrat', sans-serif;
+  padding: 2.5% 5% 2.5% 5%;
+  background-color: #b2ad7f;
+  margin-top: 2.5%;
+}
+
+.proj-one-main p {
+  text-indent: 50px;
+  line-height: 200%;
+  font-size: 1em;
+}
+
+/*---footer----*/
+
+.proj-one-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #a2b9bc;
+  height: 50px;
+  padding-left: 5%;
+  margin-top: 2.5%;
+  clear:both;
+}
+
+
+/*----------Project Two CSS--------------*/
+/*######################################*/
+
+
+/*-------- The main section of the family tree page-------------*/
+#parents {
+  display:flex;
+  flex-wrap:wrap;
+  font-family: 'Montserrat', sans-serif;
+  
+}
+
+#dad {
+  flex:1;
+  text-align:center;
+  background-color: #878f99;
+}
+
+#dad a:hover{
+  color:white;
+}
+
+#mom{
+  flex:1;
+  text-align:center;
+  background-color:#6b5b95;
+}
+#mom a:hover{
+  color:white;
+}
+
+#children{
+  display:flex;
+  flex-wrap:wrap;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#Adelynn {
+  flex:1;
+  text-align:center;
+  background-color:#6b5b95;
+}
+#Adelynn a:hover{
+  color:white;
+}
+
+#Aven {
+   flex:1;
+   text-align:center;
+   background-color:#b2ad7f;
+}
+#Aven a:hover{
+  color:white;
+}
+
+#Grayson {
+   flex:1;
+   text-align:center;
+   background-color: #878f99;
+}
+#Grayson a:hover{
+  color:white;
+}
+
+/*------main body of the other pages--------*/
+
+.proj-two-person {
+  font-family: 'Montserrat', sans-serif;
+  display:flex;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+
+.proj-two-photo {
+  flex:1;
+}
+
+.proj-two-info {
+  flex:1;
+  padding-left:30px;
+  min-width:300px;
+}
+
+/*--allow menu and header to change to fit smaller screens--*/
+@media only screen and (max-width:480px){
+  .proj-one-nav{
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .proj-one-header{
+    font-size:2em;
+  }
+}
+
+/*--Project Three CSS--*/
+
+
+.rank-section {
+  display:flex;
+  margin-top:30px;
+}
+
+.product-image {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-repeat:no-repeat;
+  height:500px;
+  width:650px;
+}
+
+#family {
+  background-image: url("../images/famSession.jpg");
+}
+
+#baby{
+  background-image: url("../images/baby.jpg");
+}
+
+#couples{
+  background-image: url("../images/couples.jpg");
+}
+
+#single {
+  background-image: url("../images/single.jpg");
+}
+
+#children {
+  background-image: url("../images/children.jpg");
+}
+
+#portrait{
+  background-image: url("../images/large-print.jpg");
+}
+
+#picture-frame {
+  background-image: url("../images/frame.jpg");
+}
+
+#canvas {
+  background-image: url("../images/canvas.jpg");
+}
+
+#digital {
+  background-image: url("../images/disk.jpg");
+}
+
+#multi-pack {
+  background-image: url("../images/multi.jpg");
+}
+
+
+ div.product-image h2 {
+  opacity:0.7;
+  background-color:#878f99;
+  font-size:4.5em;
+  Padding: 50px 50px 50px 50px;
+}
+
+
+.review {
+  display:flex;
+  justify-content:flex-end;
+  flex-direction:column;
+  padding-left:30px;
+}
+
+.user-comment{
+  display:flex;
+  justify-content:flex-start;
+}
+
+.proj3-name{
+  margin-top:30px;
+  padding-right:30px;
+}
+
+.proj3-comments{
+  display:flex;
+  align-items:flex-start;
+  margin-top:30px;
+  padding-right:50px;
+}
+
+.proj3-submit{
+  margin-left:30px;
+}
+
+/*--Nav bar needs adusted for this project to allow for longer strings that will not wrap */
+div.proj-three-nav p {
+  margin: 0% 0% 0% 5%;
+  text-align: center;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.proj-three-nav {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: flex-start;
+  background-color: #a2b9bc;
+  padding: 0% 0% 0% 5%;
+  font-size: 1rem;
+  align-items: center;
+}
+
+
+div.proj-three-nav p:hover {
+  border-bottom: 5px solid #6b5b95;
+}
+
+div.proj-three-nav p a {
+  background-color: #a2b9bc;
+  text-decoration: none;
+  color: black;
+}
+
+.proj-three-comments {
+  background-color:#b2ad7f;
+  margin-top:30px;
+  margin-bottom:30px;
+  overflow:auto;
+  padding:30px 15px 30px 15px;
+}
+
+.proj-three-comments h3 {
+  margin-left:30px;
+}
+
+
+.addComments p {
+  padding-right:30px;
+  padding-left:30px;
+  margin-bottom:0px;
+}
+
+.addComments p p{
+  margin-top:0px;
+  font-style: italic;
+}
+
+/*for the sessions ratings page */
+
+.ratings {
+  display:flex;
+  flex-wrap:wrap;
+  padding-left:30px;
+  padding-right:30px;
+}
+
+.family-rating{
+  flex:1;
+}
+
+.baby-rating{
+  flex:1;
+}
+
+.couples-rating{
+  flex:1;
+}
+
+.single-rating {
+  flex:1;
+}
+
+.children-rating{
+  flex:1;
+}
+
+.photo-album{
+  flex:1;
+}
+
+.canvas{
+  flex:1;
+}
+
+.pic-frame{
+  flex:1;
+}
+
+.digital-rights{
+  flex:1;
+}
+
+.multipack{
+  flex:1;
+}
+
+/*------------------project four css----------------*/
+
+#directPage{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+}
+
+#proj-four-button {
+  margin-left:30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size:1.2em;
+  background-color:#a2b9bc;
+}
+
+.proj-four-input {
+  width:220px;
+}
+
+.proj-four-label{
+  font-family: 'Montserrat', sans-serif;
+  font-size:1.2em;
+}
+
+/*------------Project 5 CSS-----------------*/
+
+.proj-five-label {
+  width:150px;
+  display:inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
