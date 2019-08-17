@@ -1,0 +1,465 @@
+
+.invisible {
+  display:none;
+}
+
+.visable{
+  color:blue;
+}
+
+a {
+  text-decoration-color:none;
+  text-decoration-line:none;
+  text-decoration-color:none;
+}
+
+#nav-bar{
+ background-color:#4C586F;
+ padding-left:2.5%;
+ padding-right:2.5%;
+ display:inline-block;
+ height:750px;
+ color:#CBC5C1;
+ width:150px;
+ position:absolute;
+ left:0;
+ top:0;
+}
+
+.nav-link {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size:1rem;
+}
+
+.nav-link:hover {
+  color:white;
+}
+
+#home {
+    color:#CBC5C1;
+}
+
+#home:hover {
+    color:white;
+}
+
+#cart{
+    color:#CBC5C1;
+}
+
+#cart:hover{
+    color:white;
+}
+
+#login{
+    
+}
+
+#login:hover{
+    color:white;
+}
+
+#contacts {
+ padding:5%;
+ background-color:#CBC5C1;
+}
+
+#contacts p a {
+    color:#4C568F;
+}
+
+#contacts p a:hover{
+  color:white;
+}
+
+#services {
+  padding:5%;
+  background-color:#CBC5C1;
+}
+
+#services p a {
+   color:#4C568F;
+}
+
+#services p a:hover{
+  color:white;
+}
+
+#about {
+  color:#4C568F;
+  padding:5%;
+  background-color:#CBC5C1;
+}
+
+#about p a {
+   color:#4C568F;
+}
+
+
+#about p a:hover{
+  color:white;
+}
+
+#reviews{
+  padding:5%;
+   background-color:#CBC5C1;
+   padding:20px;
+}
+
+#reviews p a {
+  color:#4C568F;
+}
+
+#reviews p a:hover{
+  color:white;
+}
+
+#reviews p:hover{
+  color:white;
+}
+
+
+.header {
+  margin-left:200px;
+  margin-top:-15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family: 'Nanum Myeongjo', serif;
+  background-color:#3E3E3B;
+  color:#CBC5C1;
+  height:200px;
+  font-size:2em;
+}
+
+
+#loginForm {
+  height:557px;
+  margin-left:200px;
+  background-image:url("../images/login.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#background{
+  padding:30px 30px 30px 30px;
+  background-color:rgba(76,88,111,.8);
+  color:white;
+}
+
+#background h3 {
+  font-size:2em;
+}
+
+label {
+  display:inline-block;
+  width:100px;
+}
+
+#login-button{
+  margin-left:10px;
+  background-color:#EBECED;
+  color:#3E3E3B;
+}
+
+.tryAgain {
+  color:white;
+  text-decoration: none;
+}
+
+
+/*-------------Product page---------------*/
+
+
+#productBackground {
+  height:557px;
+  margin-left:200px;
+  background-image:url("../images/login.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#product-table-background{
+  padding:10px 10px 10px 10px;
+  background-color:rgba(76,88,111,.8);
+  color:white;
+}
+
+table, th, td {
+  border: 1px solid white;
+  border-collapse:collapse;
+  padding:5px;
+}
+
+.submit{
+  text-align:center;
+}
+
+.tableHead {
+  margin-top:5px;
+}
+
+
+/*------------shopping cart page-------------*/
+#cartBackground{
+  min-height:557px;
+  margin-left:200px;
+  background-color:rgba(76,88,111);
+  background-repeat:no-repeat;
+  background-size:cover;
+  display:flex;
+  justify-content:flex-start;
+  padding-left:50px;
+  align-items:center;
+}
+
+#cartCenter{
+  padding:10px 10px 10px 10px;
+  color:white;
+}
+
+#purchaseButtons {
+  display:flex;
+  justify-content:space-between;
+}
+
+/*---------rate sessions-----------*/
+.rateSessionsBackground {
+  height:557px;
+  margin-left:200px;
+  background-image:url("../images/login.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.rateCenter{
+  padding:30px 30px 30px 30px;
+  background-color:rgba(76,88,111,.8);
+  color:white;
+}
+
+/*-------Sessions Review Page------------*/
+.sessionContainer{
+  height:557px;
+  margin-left:200px;
+  background-image:url("../images/login.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  overflow:auto;
+}
+
+.sessionComments {
+  padding:30px 30px 30px 30px;
+  background-color:rgba(76,88,111,.8);
+  color:white;
+  width:200px;
+  height:300px;
+  overflow:auto;
+  margin-right:30px;
+}
+
+/*--------------Charity Page---------------*/
+#contact {
+  text-decoration: underline;
+  text-decoration-color:none;
+}
+
+.charityContainer{
+  height:557px;
+  margin-left:230px;
+  display:flex;
+  justify-content:space-between;
+  margin-top: 30px;
+}
+
+#heart{
+  color:red;
+}
+
+#charityPicture{
+  display:inline-block;
+  
+}
+
+#charityText{
+  padding-left:30px;
+  margin-top:-28px;
+}
+
+#charityText p {
+  line-height:35px;
+}
+
+/*------------Bio Page--------------*/
+#bioContainer{
+  height:557px;
+  margin-left:200px;
+  background-image:url("../images/login.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:auto;
+}
+
+#bioContainer div p {
+  line-height:35px;
+  font-size:1em;
+}
+
+.bio{
+  font-size:1.250em;
+  color:#CBC5C1;
+  font-family: 'Nanum Myeongjo', serif;
+}
+
+/*--------------facts page-------------*/
+
+#factBackground{
+  height:557px;
+  margin-left:200px;
+  background-image:url("../images/login.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+
+.factsContainer {
+  display:flex;
+  flex-direction:column;
+  align-items:space-around;
+  padding:30px 30px 30px 30px;
+  background-color:rgba(76,88,111,.8);
+
+}
+
+.flex-container {
+  display:flex;
+  font-family: 'Nanum Myeongjo', serif;
+  padding-top:10px;
+  height:100px;
+  align-items:center;
+ }
+
+.title-container{
+    flex:1;
+    background-color:#CBC5C1;
+    text-align:center;
+    color:3E3E3B;
+}
+
+
+.text-container{
+  flex:4;
+  padding-left:20px;
+  color:white;
+}
+
+/*-----------Mission Page-----------*/
+
+#missionBackground{
+  margin-left:200px;
+  background-image:url("../images/login.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  
+}
+
+.footer {
+  margin-left:-10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family: 'Nanum Myeongjo', serif;
+  background-color:#3E3E3B;
+  color:#CBC5C1;
+  height:100px;
+}
+
+#logos {
+  margin-top:150px;
+}
+
+
+#homeBackground{
+  min-height:557px;
+  margin-left:200px;
+  background-image:url("../images/login.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  padding-left:50px;
+  display:flex;
+  flex-wrap:wrap;
+  color:white;
+}
+
+#innerHome{
+  background-color:rgba(76,88,111,.8);
+  margin-top:20px;
+  padding:30px;
+  max-width:500px;
+  max-height:300px;
+  overflow:auto;
+  text-align:center;
+}
+
+#homeText {
+  display:inline-block;
+}
+
+
+/*-------------Admin page-------------*/
+
+#adminBackground {
+  height:557px;
+  margin-left:200px;
+  background-image:url("../images/login.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  display:flex;
+}
+
+#admin-table-background{
+  margin-top:50px;
+  color:white;
+}
+
+#userTable {
+  display:block;
+  max-height:400px;
+  margin-right:100px;
+  margin-left:100px;
+  overflow:auto;
+  padding:10px 10px 10px 10px;
+  background-color:rgba(76,88,111,.8);
+}
+
+#add{
+  color:white;
+  margin-top:50px;
+  max-width:400px;
+}
+
+#adminForm {
+  padding:10px 20px 10px 20px;
+  background-color:rgba(76,88,111,.8);
+  height:305px;
+  border: 1px solid white;
+}  
+
+.cartForm {
+  display:inline;
+}
