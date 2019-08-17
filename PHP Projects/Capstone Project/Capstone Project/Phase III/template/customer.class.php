@@ -14,7 +14,7 @@ class customer {
   
   function __construct($id){
     //takes only the customer ID as the argument then uses a query to set attributes :) the experiment worked!!
-    $dbc = mysqli_connect('localhost', 'root', 'YourNewPassword', 'sysco');
+    $dbc = mysqli_connect();
     $this->ID = $id;
     $sql = "SELECT * from customer where customer_id = $id";
     $result = mysqli_query($dbc, $sql);
