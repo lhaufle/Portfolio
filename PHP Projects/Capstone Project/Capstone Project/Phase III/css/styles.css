@@ -1,0 +1,12 @@
+body {
+  background-color: #F0F7D4;
+}
+
+#jumbo {
+  background-color:#B2D732;
+  color:#FC600A;
+}
+
+#jumbo h1, p {
+  font-weight: bold;
+}
