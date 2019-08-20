@@ -1,0 +1,84 @@
+Private Sub CommandButton1_Click()
+Dim MyDate As String 'to hold the current date
+Dim customerNumber As String 'to hold cust #
+Dim fromCustomer As String 'to hold the customer number credit is being transfered from
+Dim email As String 'to hold email selection
+Dim message As String 'to hold the reason for adjustment
+Dim name As String 'to hold the name of the recipient
+
+'-------------Email Objects and variables----------
+Dim outlookApp As Outlook.Application
+Dim myMail As Outlook.MailItem
+Set outlookApp = New Outlook.Application
+Set myMail = outlookApp.CreateItem(olMailItem)
+
+'Get the date\
+MyDate = CStr(Date)
+MyDate = Replace(MyDate, "/", "-")
+
+'Get the customer number(s)
+customerNumber = CStr(txtCustomerNumber.Value)
+fromCustomer = CStr(txtFrom.Value)
+  
+'Choose the recipient
+If radioKelly.Value = True Then
+    email = "removed for obvious reasons"
+    name = "Kelly,"
+ElseIf radioLisa.Value = True Then
+    email = "removed for obvious reasons"
+    name = "Lisa,"
+End If
+
+'Get the message value
+message = txtExplanation.Text
+
+'Choose which format to submit based on reqeust type
+If radioD.Value = True Then
+    myMail.To = email
+    myMail.Subject = "Code D " & MyDate & " apply credits C" & customerNumber
+    myMail.Body = name & vbCrLf & vbCrLf & message
+    UserForm1.Hide
+    myMail.Display
+ElseIf radioT.Value = True Then
+    myMail.To = email
+    myMail.Subject = "Code D " & MyDate & " trsf x" & customerNumber & " from x" & fromCustomer
+    myMail.Body = name & vbCrLf & vbCrLf & message
+    UserForm1.Hide
+    myMail.Display
+End If
+
+Call clear 'clear fields
+
+End Sub
+
+
+Private Sub radioD_Click()
+'make the transfer text field invisible
+If radioD.Value = True Then
+    lblFrom.Visible = False
+    txtFrom.Visible = False
+End If
+
+End Sub
+
+Private Sub radioT_Click()
+'make the transfer text field visible
+If radioT.Value = True Then
+    lblFrom.Visible = True
+    txtFrom.Visible = True
+End If
+
+End Sub
+
+Private Sub clear()
+'clear the fields
+txtCustomerNumber.Text = ""
+txtExplanation.Text = ""
+txtFrom.Text = ""
+
+End Sub
+
+------------------------------------------------------------------------------------------------
+Sub LoadMyForm()
+UserForm1.Show
+End Sub
