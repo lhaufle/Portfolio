@@ -1,7 +1,7 @@
 import java.util.Random;
 
 class Hero {
-	private String name;
+    private String name;
     private double health = 100;
     private int arrows = 4; //only four arrows to use
     private boolean shield = false; //user by default is not holding up the shield
