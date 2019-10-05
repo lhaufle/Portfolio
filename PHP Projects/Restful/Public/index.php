@@ -1,6 +1,7 @@
 <?php
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use Slim\Http\Stream;
 
 require '../vendor/autoload.php';
 include '../Data/Data.php'; //include the database connection
@@ -152,13 +153,26 @@ $app->get('/downloadDocument/{id}', function (Request $request, Response $respon
     //data for headers
     $headers = array("Created {$doc->getUpdated()}", "Last Updated {$doc->getUpdated()}");
     //second level of headers for cvs
-    $lvlHeaders = array("Key "," Value");
+    $lvlHeaders = array("Key","Value");
 
     //get data to go below headers
     $jsonValues = json_decode($doc->getJson(), true);
-    //turn array to string to insert below the header
-    $strValue = implode(" ", $jsonValues);
-    echo $strValue;
+
+    /*
+     * This next section reworks the json value and changes both the key and value into
+     * values in another array to be placed into fputcvs
+     */
+    $forKeyValue = array();
+
+    //push key into array
+    foreach($jsonValues as $key=>$value){
+            array_push($forKeyValue, $key );
+    }
+
+    //push value into array
+    foreach($jsonValues as $element){
+        array_push($forKeyValue, $element);
+    }
 
     //create file handler
     $fh = fopen('export.csv', "w");
@@ -169,11 +183,32 @@ $app->get('/downloadDocument/{id}', function (Request $request, Response $respon
     fputcsv($fh, $lvlHeaders);
 
     //add the data to the document
-        fputcsv($fh, $strValue);
+    fputcsv($fh, $forKeyValue);
+
+    //get file path after it was created
+    $file = 'C:\xampp\htdocs\Restful\Public\export.csv';
+    
+    //opend the file
+    $fh = fopen($file, 'rb');
+
+    //create new streaming object
+    $stream = new \Slim\Http\Stream($fh); // create a stream instance for the response body
+
+    //return the file information through the reponse stream
+    return $response->withHeader('Content-Type', 'application/force-download')
+        ->withHeader('Content-Type', 'application/octet-stream')
+        ->withHeader('Content-Type', 'application/download')
+        ->withHeader('Content-Description', 'File Transfer')
+        ->withHeader('Content-Transfer-Encoding', 'binary')
+        ->withHeader('Content-Disposition', 'attachment; filename="' . basename($file) . '"')
+        ->withHeader('Expires', '0')
+        ->withHeader('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
+        ->withHeader('Pragma', 'public')
+        ->withBody($stream); // all stream contents will be sent to the response
 
 
-    fclose($fh);
-
+   //close the file
+   fclose($fh);
 
 });
 
