@@ -142,7 +142,7 @@ $app->get('/downloadDocument/{id}', function (Request $request, Response $respon
 
     //get passed value
     $id = $args['id'];
-    echo $id;
+
     //create a document object
     $doc = new Document($id);
     //update exported date
