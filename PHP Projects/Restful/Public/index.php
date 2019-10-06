@@ -63,8 +63,6 @@ $app->get('/getDocument',
             $db = $db->connect();
             //query all documents
             $sql = "select * from document";
-            // to hold value of returned results
-            $documents = array();
 
             //verify results have been returned
             if ($results = $db->query($sql)) {
