@@ -149,7 +149,7 @@ $app->get('/downloadDocument/{id}', function (Request $request, Response $respon
     $doc->updateExport();
 
     //data for headers
-    $headers = array("Created {$doc->getUpdated()}", "Last Updated {$doc->getUpdated()}");
+    $headers = array("Created {$doc->getCreated()}", "Last Updated {$doc->getUpdated()}");
     //second level of headers for cvs
     $lvlHeaders = array("Key","Value");
 
