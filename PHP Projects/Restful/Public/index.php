@@ -33,7 +33,7 @@ $app->post('/addDocument', function (Request $request, Response $response, array
             $sql = "INSERT INTO `document`(json) VALUES ($number)";
         }else{
             //respond to the request if the wrong key was passed
-            return $response->withJson('{"error":"must be work, date, or number"}');
+            return $response->withJson('{"error":"must be word, date, or number"}');
         }
 
         //submit query
