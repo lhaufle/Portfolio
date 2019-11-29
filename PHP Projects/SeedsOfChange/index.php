@@ -1,6 +1,53 @@
 <?php
 include './phpScripts/template.php';
 
+//including database class shortly
+
+
+//check if a post request was sent
+if($_SERVER['REQUEST_METHOD'] = 'POST'){
+  //double check all parameters
+  if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['email']) && 
+     isset($_POST['password']) && isset($_POST['repass']) ){
+    //assigning to variables for query after stripping possible tags
+    $firstName = strip_tags($_POST['firstName']);
+    $lastName = strip_tags($_POST['lastName']);
+    $email = strip_tags($_POST['email']);
+    $password = strip_tags($_POST['password']);
+    $repass = strip_tags($_POST['repass']);
+    
+    //creat query string to make sure email doesn't already exist
+    $exist = <<< EOT
+    select * from users where email = '$email'
+EOT;
+    
+    //create query for insert statement
+    $insert = <<< EOT
+    insert into users(first_name, last_name, email, password) values('$firstName', '$lastName','$email','$password')
+EOT;
+    
+    $con = new Data();
+    $con = $con->connect();
+    
+    if($duplicate = mysqli_query($con, $exist)){
+      //get number of results, hopefully none
+      $rowCount = mysqli_num_rows($duplicate);
+      
+      if($rowCount >= 1){
+        $alreadyExists = true;
+      } else {
+         $alreadyExists = false;
+         mysqli_query($con, $insert);
+      }
+      
+    }
+    
+    
+  }else{
+    
+  }
+}
+
 ?>
 
 <!doctype html>
@@ -48,12 +95,24 @@ include './phpScripts/template.php';
   </div>
 </div>
     
-    <!------Only displays the error message if the passwords do not match-->
-    <div id='password_error' class='password_error'>
+    <!------Only displays the error message if the passwords do not match with javascript validation-->
+
+    
+    <!--------Displays an error if the email address is already in the database------>
+    <?php 
+      if($alreadyExists){
+        
+        $showMessage = <<< EOT
+      <div id='password_error' class='password_error'>
       <p>
-         Your passwords do not match!
+         That email is already associated with an account
       </p>
-    </div>
+      </div>
+EOT;        
+        echo $showMessage;
+      }
+    ?>
+  
     <!--Sign-up form-->
     <form action='index.php' method='post'>
       <fieldset>
