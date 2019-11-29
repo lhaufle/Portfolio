@@ -1,5 +1,9 @@
 <?php
 include './phpScripts/template.php';
+//boolean variables to check for problems with post
+$alreadyExists = false;
+$postedOk = false;
+
 
 //including database class shortly
 
@@ -35,8 +39,10 @@ EOT;
       
       if($rowCount >= 1){
         $alreadyExists = true;
+        $postedOk = false;
       } else {
          $alreadyExists = false;
+         $postedOk = true;
          mysqli_query($con, $insert);
       }
       
@@ -44,7 +50,7 @@ EOT;
     
     
   }else{
-    
+    $postedOk = false;
   }
 }
 
@@ -110,6 +116,17 @@ EOT;
       </div>
 EOT;        
         echo $showMessage;
+      }
+    
+      if($postedOk == false){
+        $notPosted = <<< EOT
+       <div id='password_error' class='password_error'>
+         <p>
+         That email is already associated with an account
+          </p>
+      </div>
+EOT;
+        echo $notPosted;
       }
     ?>
   
