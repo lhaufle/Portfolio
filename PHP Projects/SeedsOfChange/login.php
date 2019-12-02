@@ -1,6 +1,32 @@
 <?php
 include './phpScripts/template.php';
 include './phpScripts/Data.php';
+
+//validate request
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  if(isset($_POST['email']) && isset($_POST['password'])){
+    $email = strip_tags($_POST['email']);
+    $password = strip_tags($_POST['password']);
+    
+    //create database connection
+    $con = new Data();
+    $con = $con->connect();
+  
+    //create query
+    $select = <<< EOT
+    select * from user where email = '$email' and password = '$password'
+EOT;
+    
+    //check query
+    if($results = mysqli_query($con, $select)){
+      
+    }
+    
+    
+    
+  }
+}
+
 ?>
 
   <!doctype html>
