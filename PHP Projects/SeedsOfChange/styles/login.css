@@ -1,0 +1,32 @@
+ #navbar-brand {
+    color:#7bb026;
+  }
+
+#login-bg {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.25em;
+  text-align:right;
+  background-image:url('../images/danger.jpg');
+  background-position: center;
+  background-size: cover;
+  color:#6b3301;
+  padding:2em;
+  margin-bottom:20px;
+}
+
+#login-bg-text{
+  background-color:rgba(252,252,252,0.6);
+  padding:1em;
+}
+
+#loginButton {
+  background-color: #7bb026;
+}
+
+input[type='email']:focus {
+  background-color:#c4e68d;
+}
+
+input[type='password']:focus{
+  background-color:#c4e68d;
+}
