@@ -1,6 +1,7 @@
 //make sure the dom has loaded
 window.addEventListener('load', () => {
- 
+  
+  
   //pevent the form from submitting if the passwords do not match
   document.getElementById('submit').addEventListener('click', function(e) {
       let password = document.getElementById('password').value;
