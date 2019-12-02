@@ -1,11 +1,11 @@
 <?php
 include './phpScripts/template.php';
+include './phpScripts/Data.php';
+
 //boolean variables to check for problems with post
 $alreadyExists = false;
 $postedOk = false;
 
-
-//including database class shortly
 
 
 //check if a post request was sent
@@ -22,33 +22,31 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
     
     //creat query string to make sure email doesn't already exist
     $exist = <<< EOT
-    select * from users where email = '$email'
+    select * from user where email = '$email'
 EOT;
     
     //create query for insert statement
     $insert = <<< EOT
-    insert into users(first_name, last_name, email, password) values('$firstName', '$lastName','$email','$password')
+    insert into user(first_name, last_name, email, password) values('$firstName', '$lastName','$email','$password')
 EOT;
     
+    //create database oject and connection
     $con = new Data();
     $con = $con->connect();
     
-    if($duplicate = mysqli_query($con, $exist)){
-      //get number of results, hopefully none
-      $rowCount = mysqli_num_rows($duplicate);
-      
-      if($rowCount >= 1){
-        $alreadyExists = true;
-        $postedOk = false;
-      } else {
-         $alreadyExists = false;
-         $postedOk = true;
-         mysqli_query($con, $insert);
-      }
-      
+    //get count of duplicates
+    $duplicate = mysqli_query($con, $exist);
+    
+    $dupNumber = mysqli_num_rows($duplicate);
+    
+    //verify that the entry is not a duplicate and display proper warning or complete insert
+    if($dupNumber > 0){
+      $alreadyExists = true;
+      $postedOk = false;
+    } else {
+      mysqli_query($con, $insert);
     }
-    
-    
+  
   }else{
     $postedOk = false;
   }
@@ -62,7 +60,7 @@ EOT;
     <?php addBoot() ?>
     <title>Sign Up</title>
     
-    <link rel='stylesheet' type='text/css' href='styles.css'>
+    <link rel='stylesheet' type='text/css' href='./styles/styles.css'>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"> 
   </head>
   <body>
@@ -109,33 +107,26 @@ EOT;
       if($alreadyExists){
         
         $showMessage = <<< EOT
-      <div id='password_error' class='password_error'>
-      <p>
-         That email is already associated with an account
-      </p>
-      </div>
-EOT;        
+        <div class="alert alert-danger text-center" role="alert">
+           That email already exists
+        </div>
+EOT;
         echo $showMessage;
       }
+    ?>
     
-      if($postedOk == false){
-        $notPosted = <<< EOT
-       <div id='password_error' class='password_error'>
+      <div id='password_error' class='password_error'>
          <p>
-         That email is already associated with an account
+          Passwords do not match!
           </p>
       </div>
-EOT;
-        echo $notPosted;
-      }
-    ?>
   
     <!--Sign-up form-->
     <form action='index.php' method='post'>
       <fieldset>
         <h1>
           Create an Account
-          <img src='leaf.png'/>
+          <img src='./images/leaf.png'/>
         </h1>
         <label>First Name:</label>
         <input type='text' name='firstName' id='firstName' required>
@@ -147,10 +138,10 @@ EOT;
         <input type='password' name='password' id='password' required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must have upper and lowercase letter and include at least one number">
         <label>Re-enter Password:</label>
         <input type='password' name='repass' id='repass'>
-        <input type='submit' value='Create Account' id='submit' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must have upper and lowercase letter and include at least one number"/>
+        <input type='submit' value='Create Account' id='submit' required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must have upper and lowercase letter and include at least one number"/>
       </fieldset>
     </form>
     <?php addBootJs() ?>
-    <script src='script.js'></script>
+    <script src='jsScripts/script.js'></script>
   </body>
 </html>
