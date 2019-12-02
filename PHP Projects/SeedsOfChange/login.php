@@ -122,7 +122,7 @@ EOT;
       </div>
   
     <!--Sign-up form-->
-    <form action='index.php' method='post'>
+    <form action='login.php' method='post'>
       <fieldset>
         <h1>
           Create an Account
