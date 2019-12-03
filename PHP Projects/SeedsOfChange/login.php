@@ -42,10 +42,7 @@ EOT;
     } else {
       $loginFailed = true;
     }
-      
-
-    
-    
+     
   }
   
 }
@@ -54,16 +51,16 @@ EOT;
 
   <!doctype html>
   <html>
-
   <head>
     <?php addBoot() ?>
-    <title>Sign Up</title>
+    <title>Login</title>
 
     <link rel='stylesheet' type='text/css' href='./styles/login.css'>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
   </head>
 
   <body>
+    
     <div class='container'>
       <!------------Nav Bar------------>
       <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
