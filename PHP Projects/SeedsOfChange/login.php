@@ -1,12 +1,20 @@
 <?php
+session_start();
+
 include './phpScripts/template.php';
 include './phpScripts/Data.php';
 
+//flag to let user know if login failed
+ $loginFailed = false;
+
 //validate request
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-  if(isset($_POST['email']) && isset($_POST['password'])){
+  
+  if(!empty($_POST['email']) && !empty($_POST['password'])){
     $email = strip_tags($_POST['email']);
     $password = strip_tags($_POST['password']);
+    
+
     
     //create database connection
     $con = new Data();
@@ -16,15 +24,30 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $select = <<< EOT
     select * from user where email = '$email' and password = '$password'
 EOT;
+ 
+    //query with user input
+    $results = mysqli_query($con, $select);
     
-    //check query
-    if($results = mysqli_query($con, $select)){
-      
+    //get number of rows
+    $dupNumber = mysqli_num_rows($results);
+    
+    //verity that the query returned a result
+    if($dupNumber > 0){
+      //assign the value of the user_id to the session
+      $row = mysqli_fetch_array($results);
+      $_SESSION['user_id'] = $row['user_id'];
+      //redirect to user's home page
+      header('location:tracking.php');
+      exit();
+    } else {
+      $loginFailed = true;
     }
-    
+      
+
     
     
   }
+  
 }
 
 ?>
@@ -64,6 +87,18 @@ EOT;
           </div>
         </div>
       </nav>
+      
+      <?php  
+      //display error if the login fails
+        if($loginFailed){
+           $showMessage = <<< EOT
+           <div class="alert alert-danger text-center" role="alert">
+             That email already exists
+           </div>
+EOT;
+        echo $showMessage;
+        }
+      ?>
 
         <div class='row'>
           <div class='col-md-6 col-sm-12' id='login-bg' >
@@ -77,14 +112,14 @@ EOT;
             </div>
           </div>
           <div class=' col-md-6 col-sm-12'>
-            <form>
+            <form action='login.php' method='post'>
               <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email">
+                <input type="email" class="form-control" name='email' id="email" aria-describedby="email">
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" name='password' class="form-control" id="password">
               </div>
               <button type="submit" id='loginButton' class="btn btn-primary">Login</button>
             </form>
