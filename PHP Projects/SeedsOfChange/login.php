@@ -90,7 +90,7 @@ EOT;
         if($loginFailed){
            $showMessage = <<< EOT
            <div class="alert alert-danger text-center" role="alert">
-             That email already exists
+             Incorrect email or password
            </div>
 EOT;
         echo $showMessage;
