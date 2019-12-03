@@ -31,7 +31,7 @@ EOT;
     //get number of rows
     $dupNumber = mysqli_num_rows($results);
     
-    //verity that the query returned a result
+    //verify that the query returned a result
     if($dupNumber > 0){
       //assign the value of the user_id to the session
       $row = mysqli_fetch_array($results);
