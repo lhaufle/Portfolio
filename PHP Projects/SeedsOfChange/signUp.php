@@ -11,8 +11,8 @@ $postedOk = false;
 //check if a post request was sent
 if($_SERVER['REQUEST_METHOD'] = 'POST'){
   //double check all parameters
-  if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['email']) && 
-     isset($_POST['password']) && isset($_POST['repass']) ){
+  if(!empty($_POST['firstName']) && !empty($_POST['lastName']) && !empty($_POST['email']) && 
+     !empty($_POST['password']) && !empty($_POST['repass']) ){
     //assigning to variables for query after stripping possible tags
     $firstName = strip_tags($_POST['firstName']);
     $lastName = strip_tags($_POST['lastName']);
@@ -80,7 +80,7 @@ EOT;
         <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
+        <a class="nav-link" href="login.php">Login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active nav-custom-color" href="#">SignUp</a>
@@ -99,7 +99,7 @@ EOT;
   </div>
 </div>
     
-    <!------Only displays the error message if the passwords do not match with javascript validation-->
+    
 
     
     <!--------Displays an error if the email address is already in the database------>
@@ -115,6 +115,7 @@ EOT;
       }
     ?>
     
+    <!------Only displays the error message if the passwords do not match with javascript validation-->
       <div id='password_error' class='password_error'>
          <p>
           Passwords do not match!
