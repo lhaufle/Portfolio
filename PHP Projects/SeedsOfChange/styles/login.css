@@ -30,3 +30,15 @@ input[type='email']:focus {
 input[type='password']:focus{
   background-color:#c4e68d;
 }
+
+#passwordButton{
+  margin-left:-10px;
+}
+
+#passwordSubmit {
+  background-color: #7bb026;
+}
+
+.passwordReset {
+  display:none;
+}
