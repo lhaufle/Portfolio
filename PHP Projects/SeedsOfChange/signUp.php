@@ -6,7 +6,9 @@ include './phpScripts/Data.php';
 $alreadyExists = false;
 $postedOk = false;
 
-
+//create database oject and connection
+$con = new Data();
+$con = $con->connect();
 
 //check if a post request was sent
 if($_SERVER['REQUEST_METHOD'] = 'POST'){
@@ -14,11 +16,11 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
   if(!empty($_POST['firstName']) && !empty($_POST['lastName']) && !empty($_POST['email']) && 
      !empty($_POST['password']) && !empty($_POST['repass']) ){
     //assigning to variables for query after stripping possible tags
-    $firstName = strip_tags($_POST['firstName']);
-    $lastName = strip_tags($_POST['lastName']);
-    $email = strip_tags($_POST['email']);
-    $password = strip_tags($_POST['password']);
-    $repass = strip_tags($_POST['repass']);
+    $firstName = mysqli_real_escape_string($con, strip_tags($_POST['firstName']));
+    $lastName = mysqli_real_escape_string($con, strip_tags($_POST['lastName']));
+    $email = mysqli_real_escape_string($con, strip_tags($_POST['email']));
+    $password = mysqli_real_escape_string($con, strip_tags($_POST['password']));
+    $repass = mysqli_real_escape_string($con, strip_tags($_POST['repass']));
     
     //creat query string to make sure email doesn't already exist
     $exist = <<< EOT
@@ -30,12 +32,12 @@ EOT;
     insert into user(first_name, last_name, email, password) values('$firstName', '$lastName','$email','$password')
 EOT;
     
-    //create database oject and connection
-    $con = new Data();
-    $con = $con->connect();
     
     //get count of duplicates
     $duplicate = mysqli_query($con, $exist);
+    
+    //close connection
+    mysqli_close($con);
     
     $dupNumber = mysqli_num_rows($duplicate);
     
