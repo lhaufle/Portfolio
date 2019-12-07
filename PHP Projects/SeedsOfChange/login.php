@@ -7,17 +7,19 @@ include './phpScripts/functions.php';
 
 //flag to let user know if login failed
  $loginFailed = false;
+ 
+ //create database connection
+ $con = new Data();
+ $con = $con->connect();
 
 //validate request
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   
   if(!empty($_POST['email']) && !empty($_POST['password'])){
-    $email = strip_tags($_POST['email']);
-    $password = strip_tags($_POST['password']);
     
-    //create database connection
-    $con = new Data();
-    $con = $con->connect();
+    //sanitize the input
+    $email =  mysqli_real_escape_string($con, strip_tags($_POST['email']));
+    $password = mysqli_real_escape_string($con, strip_tags($_POST['password']));
   
     //create query
     $select = <<< EOT
@@ -26,6 +28,9 @@ EOT;
  
     //query with user input
     $results = mysqli_query($con, $select);
+    
+    //close connection
+    mysqli_close($con);
     
     //get number of rows
     $dupNumber = mysqli_num_rows($results);
@@ -124,7 +129,7 @@ EOT;
         Forgot Password
           </button>
           <div id='passwordReset' class='passwordReset'>
-            <form class="form-inline " action='passwordRest.php' method='post'>
+            <form class="form-inline " action='passwordRest.php' method='get'>
               <div class="form-group mb-2">
                 <label for="email" class="sr-only">Email</label>
                 <input type="email" class="form-control" id="email" name='email' placeholder="enter email address" required>
