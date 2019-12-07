@@ -1,150 +1,115 @@
 <?php
 include './phpScripts/template.php';
 include './phpScripts/Data.php';
+include './phpScripts/functions.php';
 
-//boolean variables to check for problems with post
-$alreadyExists = false;
-$postedOk = false;
-
-//create database oject and connection
+//create connection
 $con = new Data();
 $con = $con->connect();
 
-//check if a post request was sent
-if($_SERVER['REQUEST_METHOD'] = 'POST'){
-  //double check all parameters
-  if(!empty($_POST['firstName']) && !empty($_POST['lastName']) && !empty($_POST['email']) && 
-     !empty($_POST['password']) && !empty($_POST['repass']) ){
-    //assigning to variables for query after stripping possible tags
-    $firstName = mysqli_real_escape_string($con, strip_tags($_POST['firstName']));
-    $lastName = mysqli_real_escape_string($con, strip_tags($_POST['lastName']));
-    $email = mysqli_real_escape_string($con, strip_tags($_POST['email']));
-    $password = mysqli_real_escape_string($con, strip_tags($_POST['password']));
-    $repass = mysqli_real_escape_string($con, strip_tags($_POST['repass']));
+$is_valid_email = false;
+
+//check if request came over via get
+if($_SERVER['REQUEST_METHOD'] == 'GET'){
+  if(!empty($_GET['email'])){
     
-    //creat query string to make sure email doesn't already exist
-    $exist = <<< EOT
+  $email = mysqli_real_escape_string($con, strip_tags($_GET['email']));
+    
+    //create select statement
+    $select = <<< EOT
     select * from user where email = '$email'
 EOT;
     
-    //create query for insert statement
-    $insert = <<< EOT
-    insert into user(first_name, last_name, email, password) values('$firstName', '$lastName','$email','$password')
-EOT;
+    //query results
+    $results = mysqli_query($con, $select);
     
+    //check to see if a result was returned
+    $number = mysqli_num_rows($results);
     
-    //get count of duplicates
-    $duplicate = mysqli_query($con, $exist);
-    
-    //close connection
-    mysqli_close($con);
-    
-    $dupNumber = mysqli_num_rows($duplicate);
-    
-    //verify that the entry is not a duplicate and display proper warning or complete insert
-    if($dupNumber > 0){
-      $alreadyExists = true;
-      $postedOk = false;
-    } else {
-      mysqli_query($con, $insert);
-    }
-  
-  }else{
-    $postedOk = false;
+    if($number > 0){
+      $is_valid_email = true;
+    } 
   }
+}
+
+//check if requerst was sent via post
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  //more coming later
 }
 
 ?>
 
-<!doctype html>
-<html>
+  <!doctype html>
+  <html>
+
   <head>
     <?php addBoot() ?>
-    <title>Sign Up</title>
-    
-    <link rel='stylesheet' type='text/css' href='./styles/styles.css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"> 
+    <title>Password Reset</title>
+
+    <link rel='stylesheet' type='text/css' href='./styles/login.css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
   </head>
+
   <body>
-    
-    
-      
-    <!------------Nav Bar------------>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
-  <div class="container">
-  <a class="navbar-brand" id='navbar-brand' href="#">SEEDS OF CHANGE</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+    <div class='container'>
+      <!------------Nav Bar------------>
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
+          <a class="navbar-brand" id='navbar-brand' href="#">SEEDS OF CHANGE</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="login.php">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active nav-custom-color" href="#">SignUp</a>
-      </li>
-    </ul>
-  </div>
-    </div>
-</nav>
-    
-    
-    <!---------Jumbotron------------>
-<div class="jumbotron jumbotron-fluid" id='jumbotron'>
-  <div class="container" id='login-jumbo'>
-    <h1 class="display-4">Sign Up</h1>
-    <p class="lead">Do your part and change the future!</p>
-  </div>
-</div>
-    
-    
-
-    
-    <!--------Displays an error if the email address is already in the database------>
-    <?php 
-      if($alreadyExists){
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="login.php">Login</a>
+              </li>
+            </ul>
+          </div>
+      </nav>
+      
+      <?php
+      //display the form if the email address exists
+      if($is_valid_email){
         
-        $showMessage = <<< EOT
-        <div class="alert alert-danger text-center" role="alert">
-           That email already exists
+        $displayForm = <<< EOT
+       <div class='row'>
+        <div class='col-sm-12 col-md-10 col-lg-8 mx-auto'>
+         <form action='passwordRest.php' method='post'>
+        <div class="form-group">
         </div>
-EOT;
-        echo $showMessage;
-      }
-    ?>
-    
-    <!------Only displays the error message if the passwords do not match with javascript validation-->
-      <div id='password_error' class='password_error'>
-         <p>
-          Passwords do not match!
-          </p>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" required>
+          <small id="password help" class="form-text text-muted">Check you email(and your spam)</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+        </div>
       </div>
-  
-    <!--Sign-up form-->
-    <form action='signUp.php' method='post'>
-      <fieldset>
-        <h1>
-          Create an Account
-          <img src='./images/leaf.png'/>
-        </h1>
-        <label>First Name:</label>
-        <input type='text' name='firstName' id='firstName' required>
-        <label>Last Name:</label>
-        <input type='text' name='lastName' id='lastName' required>
-        <label>Email:</label>
-        <input type='email' name='email' id='email' required>
-        <label>Password:</label>
-        <input type='password' name='password' id='password' required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must have upper and lowercase letter and include at least one number">
-        <label>Re-enter Password:</label>
-        <input type='password' name='repass' id='repass'>
-        <input type='submit' value='Create Account' id='submit' required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must have upper and lowercase letter and include at least one number"/>
-      </fieldset>
-    </form>
+EOT;
+        echo $displayForm;
+        
+      } else {
+        //diplay an error if the email address does not exist
+        
+        $noEmail = <<< EOT
+          <div class="alert alert-danger text-center" role="alert">
+            Email address does not exist
+          </div>
+EOT;
+        echo $noEmail;
+      }
+            
+       ?>
+
+
+    </div>
+
+
+
     <?php addBootJs() ?>
-    <script src='jsScripts/script.js'></script>
+    <script src='jsScripts/login.js'></script>
   </body>
-</html>
+
+  </html>
