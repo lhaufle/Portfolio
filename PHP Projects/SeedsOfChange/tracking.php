@@ -1,7 +1,6 @@
 <?php
 //start session with user_id from login
 session_start();
-echo $_SESSION['user_id'];
 
 include './phpScripts/template.php';
 include './phpScripts/Data.php';
@@ -25,7 +24,7 @@ include './phpScripts/user.class.php';
       <!------------Nav Bar------------>
       <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
         <div class="container">
-          <a class="navbar-brand" id='navbar-brand' href="home.php">SEEDS OF CHANGE</a>
+          <a class="navbar-brand" id='navbar-brand'>SEEDS OF CHANGE</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -33,6 +32,9 @@ include './phpScripts/user.class.php';
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a class="nav-link active" href="tracking.php">Tracking<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link nav-custom-color" href="profile.php">Profile</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link nav-custom-color" href="logout.php">Logout</a>
