@@ -1,6 +1,6 @@
 <?php
+ini_set( "display_errors", 0);
 session_start();
-
 include './phpScripts/template.php';
 include './phpScripts/Data.php';
 include './phpScripts/functions.php';
