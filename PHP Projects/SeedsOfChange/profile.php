@@ -1,51 +1,49 @@
 <?php
+//not complete still pending more validation and style
+
+
 session_start();
+//$id = $_SESSION['user_id'];
 
 include './phpScripts/template.php';
 include './phpScripts/Data.php';
 include './phpScripts/user.class.php';
 
-$user = new User(8); // hard coded for testing
+$user = new User(8);
 
 //connect to database
 $con = new Data();
 $con = $con->connect();
 
-//set flags
-$updatedPassword = false;
-$updatedInfo = false;
-
-
-//update the password
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+//check for async post request of user's general info
+if(isset($_POST['fname'])){
+  //sanitize the data
+  $first_name = $_POST['fname'];
+  $last_name = $_POST['lname'];
+  $email = $_POST['email'];
   
-  if(!empty($_POST['password'])){
-    //get input and satnitize it
-    $password = mysqli_real_escape_string($con, strip_tags($_POST['password']));
-    //create query
-    $update = <<< EOT
-    update user set password = '$password' where user_id = {$user->get_user_id()}
+  //create query statement. Id is hard coded for testing                                              
+  $update = <<< EOT
+    update user set first_name = '$first_name', last_name = '$last_name', email = '$email' where user_id = 8
 EOT;
-    //update the password
-    mysqli_query($con, $update);
-   //set flag to true
-   $updatedPassword = true;    
-  }elseif(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['email'])){
-    $first_name = mysqli_real_escape_string($con, strip_tags($_POST['first_name']));
-    $last_name = mysqli_real_escape_string($con, strip_tags($_POST['last_name']));
-    $email = mysqli_real_escape_string($con, strip_tags($_POST['email']));
-    
-    //create udpate statement
-    $update = <<< EOT
-    update user set first_name = '$first_name', last_name = '$last_name', email = '$email' where user_id = '{$user->get_user_id()}'
-EOT;
-    
-    //update the information
-    mysqli_query($con, $update);
-    
-  }
-
+  
+  //submit query                                                   
+  mysqli_query($con, $update);
 }
+
+//check for user async request for password update
+if(isset($_POST['password'])){
+  //sanitize input
+  $password = mysqli_real_escape_string($con, strip_tags($_POST['password']));
+ //create query statement. Id hard coded for testing
+ $update = <<< EOT
+ update user set password = '$password' where user_id = 8
+EOT;
+ 
+ //submit query
+  mysqli_query($con, $update);                                       
+}  
+                                                    
 
 ?>
 
@@ -99,7 +97,7 @@ EOT;
       <div class='row'>
         <div class='col-sm-12 col-md-6'>
           <!--Form for changing password-->
-          <form action='profile.php' method='post'>
+          <form>
             <fieldset>
               <div class="form-group">
                 <label for="password">Password:</label>
@@ -109,12 +107,12 @@ EOT;
                 <label for="repass">Confirm:</label>
                 <input type="password" class="form-control" name='repass' id="repass">
               </div>
-              <button type="submit" class="btn btn-primary">Update Password</button>
+              <button id='passwordInfo'class="btn btn-primary">Update Password</button>
             </fieldset>
           </form>
         </div>
         <div class='col-sm-12 col-md-6'>
-          <form action='profile.php' method='post'>
+          <form>
             <fieldset>
               <div class="form-group">
                 <label for="first_name">First Name:</label>
@@ -128,7 +126,7 @@ EOT;
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" name='email' id="email" value='<?= $user->get_email()?>' required/>
               </div>
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button id='user_info' class="btn btn-primary">Update</button>
             </fieldset>
           </form>
         </div>
@@ -137,7 +135,7 @@ EOT;
     </div>
 
     <?php addBootJs() ?>
-    <script src='jsScripts/script.js'></script>
+    <script src='jsScripts/profile.js'></script>
   </body>
 
   </html>
