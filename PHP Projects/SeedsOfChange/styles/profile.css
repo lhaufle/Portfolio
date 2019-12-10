@@ -1,0 +1,52 @@
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+
+input[type='email']:focus {
+  background-color:#c4e68d;
+}
+
+input[type='password']:focus{
+  background-color:#c4e68d;
+}
+
+input[type='text']:focus{
+  background-color:#c4e68d;
+}
+
+#user_info{
+  background-color: #7bb026;
+}
+
+#passwordInfo {
+  background-color: #7bb026;
+}
+
+ #navbar-brand {
+    color:#7bb026;
+  }
+
+.hide {
+  display:none;
+}
+
+#jumbotron{
+  background-image:url('../images/profile.jpg');
+  background-position: center;
+  background-size: cover;
+  color:#7bb026;
+}
+
+#login-jumbo{
+  text-align:center;
+  background-color:rgba(102,51,0,0.8);
+  width:40%;
+  min-width:300px;
+  padding:1em;
+}
+
+#password_form {
+  margin-bottom:2em;
+}
