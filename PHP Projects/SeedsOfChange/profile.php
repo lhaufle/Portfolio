@@ -54,7 +54,7 @@ EOT;
     <?php addBoot() ?>
     <title>Profile</title>
 
-    <link rel='stylesheet' type='text/css' href='./styles/login.css'>
+    <link rel='stylesheet' type='text/css' href='./styles/profile.css'>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
   </head>
 
@@ -85,29 +85,36 @@ EOT;
       </nav>
 
       <!--Jumbotron-->
-      <div class="jumbotron jumbotron-fluid">
-        <div class="container">
+      <div class="jumbotron jumbotron-fluid" id='jumbotron'>
+        <div class="container" id='login-jumbo'>
           <h1 class="display-4">Hello,
             <?= $user->get_first_name(); ?>
           </h1>
           <p class="lead">You can review and make changes to your profile.</p>
         </div>
       </div>
+      
+      <!---display alert if passwords do not match-->
+      <div class="alert alert-danger hide" id='alert' role="alert">
+        A simple danger alert—check it out!
+      </div>
 
       <div class='row'>
         <div class='col-sm-12 col-md-6'>
           <!--Form for changing password-->
-          <form>
+          <form id='password_form'>
             <fieldset>
               <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control" name='password' id="password" aria-describedby="password">
+                <input type="password" class="form-control" name='password' id="password" aria-describedby="password"
+                       required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must have upper and lowercase letter and include at least one number">
               </div>
               <div class="form-group">
                 <label for="repass">Confirm:</label>
-                <input type="password" class="form-control" name='repass' id="repass">
+                <input type="password" class="form-control" name='repass' id="repass"
+                       required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must have upper and lowercase letter and include at least one number">
               </div>
-              <button id='passwordInfo'class="btn btn-primary">Update Password</button>
+              <button id='passwordInfo' class="btn btn-primary">Update Password</button>
             </fieldset>
           </form>
         </div>
@@ -126,7 +133,7 @@ EOT;
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" name='email' id="email" value='<?= $user->get_email()?>' required/>
               </div>
-              <button id='user_info' class="btn btn-primary">Update</button>
+              <button id='user_info'  class="btn btn-primary">Update</button>
             </fieldset>
           </form>
         </div>
