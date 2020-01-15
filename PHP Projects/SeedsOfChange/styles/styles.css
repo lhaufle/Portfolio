@@ -25,6 +25,13 @@
     padding:1em;
   }
   
+  #jumbotron_home{
+    background-image: url('../images/purple_flower.jpg');
+    background-position: center;
+    background-size: cover;
+    color:#7bb026;
+  }
+  
   /*styling for the signup form */
   legend, label, input{
     font-size:1.125em;
@@ -121,6 +128,13 @@
   
   #jumbotron{
     background-image: url('../images/seeds.jpg');
+    background-position: center;
+    background-size: cover;
+    color:#7bb026;
+  }
+  
+  #jumbotron_home{
+    background-image: url('../images/purple_flower.jpg');
     background-position: center;
     background-size: cover;
     color:#7bb026;
