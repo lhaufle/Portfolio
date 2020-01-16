@@ -42,21 +42,38 @@ include './phpScripts/functions.php';
         </div>
       </nav>
 
+
       <div class="jumbotron jumbotron-fluid" id='jumbotron_home'>
         <div class="container" id='login-jumbo'>
           <h1 class="display-4">Seeds of Change</h1>
           <p class="lead">Making a difference in the present that will impact the future</p>
         </div>
       </div>
-      
-      <div class='row'>
-        
+
+      <div class="container">
+        <div class='row'>
+          <div class='col-md-6 col-sm-12'>
+            <img src="images/hands_planting.jpg" id='helping_hands' alt="planting">
+          </div>
+          <div class='col-md-6 col-sm-12' id='description'>
+            <h2>
+              Saving endangered plants is ensuring a better future.
+            </h2>
+            <p>
+              Seeds of change is a non-profit citizen led effort to ensure that endangered plants can survive. Inspite of our efforts--we can always do better--we have already lost some and will continue to lose plants to extinction. Regarding extinction, plants that
+              are a part of this program will have the opportunity to come back to life. By harvesting a responsible amount of seeds from endangered plants, we can replant them in areas protected from people and invasive species. There are many areas
+              of man-made climate change that must be addressed, but it will be many people taking many small steps that can lead to numerous big changes. Will you parter with us?
+            </p>
+          </div>
+
+        </div>
+
       </div>
 
-
     </div>
-    <?php addBootJs() ?>
-    <script src='jsScripts/login.js'></script>
+    <?=addFooter()?>
+      <?php addBootJs() ?>
+      <script src='jsScripts/login.js'></script>
   </body>
 
   </html>
